@@ -12,6 +12,7 @@
 SeatQueue seat_queue;
 
 pthread_mutex_t seat_mutex;
+pthread_mutex_t print_mutex;
 
 sem_t waiting_Students;
 sem_t called_Student[NUM_STUDENTS];
@@ -49,6 +50,10 @@ int main(void) {
     check_pthread(
         pthread_mutex_init(&seat_mutex, NULL),
         "pthread_mutex_init"
+    );
+    check_pthread(
+        pthread_mutex_init(&print_mutex, NULL),
+        "pthread_mutex_init print_mutex"
     );
 
     check_sem(
@@ -128,6 +133,10 @@ int main(void) {
     check_pthread(
         pthread_mutex_destroy(&seat_mutex),
         "pthread_mutex_destroy"
+    );
+    check_pthread(
+        pthread_mutex_destroy(&print_mutex),
+        "pthread_mutex_destroy print_mutex"
     );
 
     printf("===== Sleeping TA Simulation Finished =====\n");
